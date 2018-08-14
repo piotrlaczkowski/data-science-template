@@ -1,4 +1,4 @@
-# Docker Cookiecutter For BackMarket Data Science Projects
+# Cookiecutter Template For BackMarket Data Science Projects
 **Helping to promote an uniform data analysis and rules**
 
 *New to Docker? Check out this writeup on containers vs virtual machines and how Docker fits in:*
