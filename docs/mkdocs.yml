@@ -3,7 +3,7 @@ site_description: A project template and directory structure for Python data sci
 site_favicon: favicon.ico
 repo_url: https://github.com/BackMarket/templates-data-science.git
 copyright: Project maintained by Piotr Laczkowski
-theme: cinder
+theme: readthedocs
 extra_css:
   - css/extra.css
 pages:

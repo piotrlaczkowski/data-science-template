@@ -1,4 +1,5 @@
 mkdocs
 mkdocs-cinder
+click-man
 cookiecutter
 pytest

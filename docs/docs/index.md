@@ -1,21 +1,15 @@
-# Cookiecutter Data Science
+# Cookiecutter BackMarket Template for Data Science
 
-_A logical, reasonably standardized, but flexible project structure for doing and sharing data science work._
+_A logical, reasonably standardized, but flexible project structure for doing and sharing data science work. Including Docker makefile, .env for (secrets) and MkDocks functionality setup by default._
 
 ## Why use this project structure?
 
-> We're not talking about bikeshedding the indentation aesthetics or pedantic formatting standards — ultimately, data science code quality is about correctness and reproducibility.
+> Ultimately, data science code quality is about correctness and reproducibility!
 
-When we think about data analysis, we often think just about the resulting reports, insights, or visualizations. While these end products are generally the main event, it's easy to focus on making the products _look nice_ and ignore the _quality of the code that generates them_. Because these end products are created programmatically, **code quality is still important**! And we're not talking about bikeshedding the indentation aesthetics or pedantic formatting standards — ultimately, data science code quality is about correctness and reproducibility.
-
-It's no secret that good analyses are often the result of very scattershot and serendipitous explorations. Tentative experiments and rapidly testing approaches that might not work out are all part of the process for getting to the good stuff, and there is no magic bullet to turn data exploration into a simple, linear progression.
-
-That being said, once started it is not a process that lends itself to thinking carefully about the structure of your code or project layout, so it's best to start with a clean, logical structure and stick to it throughout. We think it's a pretty big win all around to use a fairly standardized setup like this one. Here's why:
+When we think about data analysis, we often think just about the resulting reports, insights, or visualizations. While these end products are generally the main event, it's easy to focus on making the products _look nice_ and ignore the _quality of the code that generates them_. Because these end products are created programmatically, **code quality is still important**! It's best to start with a clean, logical structure and stick to it throughout. We think it's a pretty big win all around to use a fairly standardized setup like this one. Here's why:
 
 
 ### Other people will thank you
-
-> Nobody sits around before creating a new Rails project to figure out where they want to put their views; they just run `rails new` to get a standard project skeleton like everybody else.
 
 A well-defined, standard project structure means that a newcomer can begin to understand an analysis without digging in to extensive documentation. It also means that they don't necessarily have to read 100% of the code before knowing where to look for very specific things.
 
@@ -25,7 +19,7 @@ Well organized code tends to be self-documenting in that the organization itself
  - Learn from your analysis about the process and the domain
  - Feel confident in the conclusions at which the analysis arrives
 
-A good example of this can be found in any of the major web development frameworks like Django or Ruby on Rails. Nobody sits around before creating a new Rails project to figure out where they want to put their views; they just run `rails new` to get a standard project skeleton like everybody else. Because that default project structure is _logical_ and _reasonably standard across most projects_, it is much easier for somebody who has never seen a particular project to figure out where they would find the various moving parts.
+ Because that default project structure is _logical_ and _reasonably standard across most projects_, it is much easier for somebody who has never seen a particular project to figure out where they would find the various moving parts.
 
 Another great example is the [Filesystem Hierarchy Standard](https://en.wikipedia.org/wiki/Filesystem_Hierarchy_Standard) for Unix-like systems. The `/etc` directory has a very specific purpose, as does the `/tmp` folder, and everybody (more or less) agrees to honor that social contract. That means a Red Hat user and an Ubuntu user both know roughly where to look for certain types of files, even when using each other's system — or any other standards-compliant system for that matter!
 
@@ -41,12 +35,6 @@ Ever tried to reproduce an analysis that you did a few months ago or even a few 
 * _Et cetera, times infinity._
 
 These types of questions are painful and are symptoms of a disorganized project. A good project structure encourages practices that make it easier to come back to old work, for example separation of concerns, abstracting analysis as a [DAG](https://en.wikipedia.org/wiki/Directed_acyclic_graph), and engineering best practices like version control.
-
-### Nothing here is binding
-
-> "A foolish consistency is the hobgoblin of little minds" — Ralph Waldo Emerson (and [PEP 8!](https://www.python.org/dev/peps/pep-0008/#a-foolish-consistency-is-the-hobgoblin-of-little-minds))
-
-Disagree with a couple of the default folder names? Working on a project that's a little nonstandard and doesn't exactly fit with the current structure? Prefer to use a different package than one of the (few) defaults?
 
 **Go for it!** This is a lightweight structure, and is intended to be a good _starting point_ for many projects. Or, as PEP 8 put it:
 
@@ -67,7 +55,7 @@ With this in mind, we've created a data science cookiecutter template for projec
 Starting a new project is as easy as running this command at the command line. No need to create a directory first, the cookiecutter will do it for you.
 
 ```nohighlight
-cookiecutter https://github.com/drivendata/cookiecutter-data-science
+cookiecutter https://github.com/BackMarket/templates-data-science
 ```
 
 ### Example
@@ -76,55 +64,55 @@ cookiecutter https://github.com/drivendata/cookiecutter-data-science
 
 ## Directory structure
 
-```nohighlight
+```
 ├── LICENSE
-├── Makefile           <- Makefile with commands like `make data` or `make train`
-├── README.md          <- The top-level README for developers using this project.
+├── Dockerfile            <- New project Dockerfile that sources from base ML dev image
+├── docker-compose.yml    <- Docker Compose configuration file
+├── docker_clean_all.sh   <- Helper script to remove all containers and images from your system
+├── start.sh              <- Script to run docker compose and any other project specific initialization steps 
+├── Makefile              <- Makefile with commands like `make data` or `make train`
+├── README.md             <- The top-level README for developers using this project.
 ├── data
-│   ├── external       <- Data from third party sources.
-│   ├── interim        <- Intermediate data that has been transformed.
-│   ├── processed      <- The final, canonical data sets for modeling.
-│   └── raw            <- The original, immutable data dump.
+│   ├── external          <- Data from third party sources.
+│   ├── interim           <- Intermediate data that has been transformed.
+│   ├── processed         <- The final, canonical data sets for modeling.
+│   └── raw               <- The original, immutable data dump.
 │
-├── docs               <- A default Sphinx project; see sphinx-doc.org for details
+├── docs                  <- A default Sphinx project; see sphinx-doc.org for details
 │
-├── models             <- Trained and serialized models, model predictions, or model summaries
+├── models                <- Trained and serialized models, model predictions, or model summaries
 │
-├── notebooks          <- Jupyter notebooks. Naming convention is a number (for ordering),
-│                         the creator's initials, and a short `-` delimited description, e.g.
-│                         `1.0-jqp-initial-data-exploration`.
+├── notebooks             <- Jupyter notebooks. Naming convention is a number (for ordering),
+│                            the creator's initials, and a short `-` delimited description, e.g.
+│                            `1.0-jqp-initial-data-exploration`.
 │
-├── references         <- Data dictionaries, manuals, and all other explanatory materials.
+├── references            <- Data dictionaries, manuals, and all other explanatory materials.
 │
-├── reports            <- Generated analysis as HTML, PDF, LaTeX, etc.
-│   └── figures        <- Generated graphics and figures to be used in reporting
+├── reports               <- Generated analysis as HTML, PDF, LaTeX, etc.
+│   └── figures           <- Generated graphics and figures to be used in reporting
 │
-├── requirements.txt   <- The requirements file for reproducing the analysis environment, e.g.
-│                         generated with `pip freeze > requirements.txt`
+├── requirements.txt      <- The requirements file for reproducing the analysis environment, e.g.
+│                            generated with `pip freeze > requirements.txt`
 │
-├── src                <- Source code for use in this project.
-│   ├── __init__.py    <- Makes src a Python module
+├── src                   <- Source code for use in this project.
+│   ├── __init__.py       <- Makes src a Python module
 │   │
-│   ├── data           <- Scripts to download or generate data
-│   │   └── make_dataset.py
+│   ├── data              <- Scripts to download or generate data
+│   │   └── make_dataset.py
 │   │
-│   ├── features       <- Scripts to turn raw data into features for modeling
-│   │   └── build_features.py
+│   ├── features          <- Scripts to turn raw data into features for modeling
+│   │   └── build_features.py
 │   │
-│   ├── models         <- Scripts to train models and then use trained models to make
-│   │   │                 predictions
-│   │   ├── predict_model.py
-│   │   └── train_model.py
+│   ├── models            <- Scripts to train models and then use trained models to make
+│   │   │                    predictions
+│   │   ├── predict_model.py
+│   │   └── train_model.py
 │   │
-│   └── visualization  <- Scripts to create exploratory and results oriented visualizations
-│       └── visualize.py
+│   └── visualization  <- Scripts to create exploratory and results oriented visualizations
+│       └── visualize.py
 │
 └── tox.ini            <- tox file with settings for running tox; see tox.testrun.org
 ```
-
-## Opinions
-
-There are some opinions implicit in the project structure that have grown out of our experience with what works and what doesn't when collaborating on data science projects. Some of the opinions are about workflows, and some of the opinions are about tools that make life easier. Here are some of the beliefs which this project is built on—if you've got thoughts, please [contribute or share them](#contributing).
 
 ### Data is immutable
 
@@ -138,9 +126,9 @@ Notebook packages like the [Jupyter notebook](http://jupyter.org/), [Beaker note
 
 Since notebooks are challenging objects for source control (e.g., diffs of the `json` are often not human-readable and merging is near impossible), we recommended not collaborating directly with others on Jupyter notebooks. There are two steps we recommend for using notebooks effectively:
 
- 1. Follow a naming convention that shows the owner and the order the analysis was done in. We use the format `<step>-<ghuser>-<description>.ipynb` (e.g., `0.3-bull-visualize-distributions.ipynb`).
+ 1. Follow a naming convention that shows the owner and the order the analysis was done in. We use the format `<step_number>-<your_initials>-<description>.ipynb` (e.g., `1-PL-visualize-distributions.ipynb`).
 
- 2. Refactor the good parts. Don't write code to do the same task in multiple notebooks. If it's a data preprocessing task, put it in the pipeline at `src/data/make_dataset.py` and load data from `data/interim`. If it's useful utility code, refactor it to `src` and import it into notebooks with a cell like the following. If updating the system path is icky to you, we'd recommend making a Python package (there is a [cookiecutter for that](https://github.com/audreyr/cookiecutter-pypackage) as well) and installing that as an editable package with `pip install -e`.
+ 2. Refactor the good parts. Don't write code to do the same task in multiple notebooks. If it's a data preprocessing task, put it in the pipeline at `src/data/make_dataset.py` and load data from `data/interim`. If it's useful utility code, refactor it to `src` and import it into notebooks with a cell like the following. If updating the system path is picky to you, we'd recommend making a Python package (there is a [cookiecutter for that](https://github.com/audreyr/cookiecutter-pypackage) as well) and installing that as an editable package with `pip install -e`.
 
 ```
 # Load the "autoreload" extension
@@ -228,25 +216,3 @@ aws_secret_access_key=myprojectsecretkey
 ```
 You can add the profile name when initialising a project; assuming no applicable environment variables are set, the profile credentials will be used be default.
 
-### Be conservative in changing the default folder structure
-
-To keep this structure broadly applicable for many different kinds of projects, we think the best approach is to be liberal in changing the folders around for _your_ project, but be conservative in changing the default structure for _all_ projects.
-
-We've created a <span class="label label-info">folder-layout</span> label specifically for issues proposing to add, subtract, rename, or move folders around. More generally, we've also created a <span class="label label-warning">needs-discussion</span> label for issues that should have some careful discussion and broad support before being implemented.
-
-## Contributing
-
-The Cookiecutter Data Science project is opinionated, but not afraid to be wrong. Best practices change, tools evolve, and lessons are learned. **The goal of this project is to make it easier to start, structure, and share an analysis.** [Pull requests](https://github.com/drivendata/cookiecutter-data-science/pulls) and [filing issues](https://github.com/drivendata/cookiecutter-data-science/issues) is encouraged. We'd love to hear what works for you, and what doesn't.
-
-If you use the Cookiecutter Data Science project, link back to this page or [give us a holler](https://twitter.com/drivendataorg) and [let us know](mailto:info@drivendata.org)!
-
-## Links to related projects and references
-
-Project structure and reproducibility is talked about more in the R research community. Here are some projects and blog posts if you're working in R that may help you out.
-
- - [Project Template](http://projecttemplate.net/index.html) - An R data analysis template
- - "[Designing projects](http://nicercode.github.io/blog/2013-04-05-projects/)" on Nice R Code
- - "[My research workflow](http://www.carlboettiger.info/2012/05/06/research-workflow.html)" on Carlboettifer.info
- - "[A Quick Guide to Organizing Computational Biology Projects](http://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1000424)" in PLOS Computational Biology
-
-Finally, a huge thanks to the [Cookiecutter](https://cookiecutter.readthedocs.org/en/latest/) project ([github](https://github.com/audreyr/cookiecutter)), which is helping us all spend less time thinking about and writing boilerplate and more time getting things done.
