@@ -8,3 +8,6 @@ extra_css:
   - css/extra.css
 pages:
   - Home: index.md
+  - Structure: structure.md
+  - Getting Started: getting_started.md
+  - Docker: docker.md
