@@ -7,22 +7,22 @@
         
         
         
-        <link rel="shortcut icon" href="favicon.ico">
+        <link rel="shortcut icon" href="../favicon.ico">
         
-        <title>BM Data Science</title>
-        <link href="css/bootstrap-custom.min.css" rel="stylesheet">
-        <link href="css/font-awesome.min.css" rel="stylesheet">
-        <link href="css/base.css" rel="stylesheet">
+        <title>Docker - BM Data Science</title>
+        <link href="../css/bootstrap-custom.min.css" rel="stylesheet">
+        <link href="../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../css/base.css" rel="stylesheet">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/docco.min.css">
-        <link href="css/extra.css" rel="stylesheet">
+        <link href="../css/extra.css" rel="stylesheet">
         <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!--[if lt IE 9]>
             <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
             <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
         <![endif]-->
 
-        <script src="js/jquery-1.10.2.min.js" defer></script>
-        <script src="js/bootstrap-3.0.3.min.js" defer></script>
+        <script src="../js/jquery-1.10.2.min.js" defer></script>
+        <script src="../js/bootstrap-3.0.3.min.js" defer></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
         <script>hljs.initHighlightingOnLoad();</script> 
     </head>
@@ -41,7 +41,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href=".">BM Data Science</a>
+                    <a class="navbar-brand" href="..">BM Data Science</a>
                 </div>
 
                 <!-- Expanded navigation -->
@@ -49,16 +49,16 @@
                         <!-- Main navigation -->
                         <ul class="nav navbar-nav">
                             <li >
-                                <a href=".">Home</a>
+                                <a href="..">Home</a>
                             </li>
                             <li >
-                                <a href="structure/">Structure</a>
+                                <a href="../structure/">Structure</a>
                             </li>
                             <li >
-                                <a href="getting_started/">Getting Started</a>
+                                <a href="../getting_started/">Getting Started</a>
                             </li>
-                            <li >
-                                <a href="docker/">Docker</a>
+                            <li class="active">
+                                <a href="./">Docker</a>
                             </li>
                         </ul>
 
@@ -68,8 +68,18 @@
                                 <i class="fa fa-search"></i> Search
                             </a>
                         </li>
+                            <li >
+                                <a rel="next" href="../getting_started/">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="disabled">
+                                <a rel="prev" >
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
                             <li>
-                                <a href="https://github.com/BackMarket/templates-data-science.git/"><i class="fa fa-github"></i> GitHub</a>
+                                <a href="https://github.com/BackMarket/templates-data-science.git/edit/master/docs/docker.md"><i class="fa fa-github"></i> Edit on GitHub</a>
                             </li>
                     </ul>
                 </div>
@@ -77,15 +87,44 @@
         </div>
 
         <div class="container">
+                <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+        <li class="main active"><a href="#docker-cheat-sheet">Docker Cheat-sheet</a></li>
+        <li class="main "><a href="#scheduling-dockers">Scheduling Dockers</a></li>
+    </ul>
+</div></div>
+                <div class="col-md-9" role="main">
 
-    <div class="row-fluid">
-      <div id="main-content" class="span12">
-        <h1 id="404-page-not-found" style="text-align: center">404</h1>
-        <p style="text-align: center"><strong>Page not found</strong></p>
-      </div>
-    </div>
+<h2 id="docker-cheat-sheet">Docker Cheat-sheet</h2>
+<p>Here is a list of the basic Docker commands from this page, and some related ones if you’d like to explore a bit before moving on <a href="https://docs.docker.com/get-started/part2/#recap-and-cheat-sheet-optional">Docker Docs</a>.</p>
+<pre><code class="docker">docker build -t friendlyhello .  # Create image using this directory's Dockerfile
+docker run -p 4000:80 friendlyhello  # Run &quot;friendlyname&quot; mapping port 4000 to 80
+docker run -d -p 4000:80 friendlyhello         # Same thing, but in detached mode
+docker container ls                                # List all running containers
+docker container ls -a             # List all containers, even those not running
+docker container stop &lt;hash&gt;           # Gracefully stop the specified container
+docker container kill &lt;hash&gt;         # Force shutdown of the specified container
+docker container rm &lt;hash&gt;        # Remove specified container from this machine
+docker container rm $(docker container ls -a -q)         # Remove all containers
+docker image ls -a                             # List all images on this machine
+docker image rm &lt;image id&gt;            # Remove specified image from this machine
+docker image rm $(docker image ls -a -q)   # Remove all images from this machine
+docker login             # Log in this CLI session using your Docker credentials
+docker tag &lt;image&gt; username/repository:tag  # Tag &lt;image&gt; for upload to registry
+docker push username/repository:tag            # Upload tagged image to registry
+docker run username/repository:tag                   # Run image from a registry
+</code></pre>
 
-
+<p>and some Docker Hacks <a href="https://codefresh.io/docker-tutorial/everyday-hacks-docker/">hacks.</a></p>
+<h2 id="scheduling-dockers">Scheduling Dockers</h2>
+<p>One-shot dockers description <a href="https://blog.alexellis.io/containers-on-swarm/">Docker Scheduling Tuto</a></p>
+<blockquote>
+<p>Description of options for scheduling a one-shot container on Docker Swarm. We'll look at some use-cases, a comparison to legacy Swarm (prior to 1.12) and then move onto some working examples of short-lived containers with Swarm Services.</p>
+</blockquote>
+<p>and a specialized tool: <a href="https://github.com/alexellis/jaas">Jobs as a Service </a></p>
+<blockquote>
+<p>This project provides a simple Golang CLI tool that binds to the Docker Swarm API to create an ad-hoc/one-shot Service and then poll until it exits. Service logs can also be retrieved if the Docker daemon API version is greater than 1.29 or if the experimental feature is enabled on the Docker daemon.</p>
+</blockquote></div>
         </div>
 
         <footer class="col-md-12">
@@ -94,11 +133,11 @@
             <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
         </footer>
         <script>
-            var base_url = "",
+            var base_url = "..",
                 shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
         </script>
-        <script src="js/base.js" defer></script>
-        <script src="search/main.js" defer></script>
+        <script src="../js/base.js" defer></script>
+        <script src="../search/main.js" defer></script>
 
         <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
     <div class="modal-dialog">
