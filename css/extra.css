@@ -3,3 +3,9 @@ h1, h2, h3, h4, h5 {
     font-family: Bradley Hand;
     color: #28BC83;
 }
+
+body {
+    /* font-family: Baskerville; */
+    text-align: justify;
+    background-color: #FAFAFA;
+}
