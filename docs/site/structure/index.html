@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../favicon.ico">
+        
+        <title>Structure - BM Data Science</title>
+        <link href="../css/bootstrap-custom.min.css" rel="stylesheet">
+        <link href="../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/docco.min.css">
+        <link href="../css/extra.css" rel="stylesheet">
+        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+
+        <script src="../js/jquery-1.10.2.min.js" defer></script>
+        <script src="../js/bootstrap-3.0.3.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script> 
+    </head>
+
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+            <div class="container">
+
+                <!-- Collapsed navigation -->
+                <div class="navbar-header">
+                    <!-- Expander button -->
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="..">BM Data Science</a>
+                </div>
+
+                <!-- Expanded navigation -->
+                <div class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li >
+                                <a href="..">Home</a>
+                            </li>
+                            <li class="active">
+                                <a href="./">Structure</a>
+                            </li>
+                            <li >
+                                <a href="../getting_started/">Getting Started</a>
+                            </li>
+                            <li >
+                                <a href="../docker/">Docker</a>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li >
+                                <a rel="next" href="..">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li >
+                                <a rel="prev" href="../getting_started/">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://github.com/BackMarket/templates-data-science.git/edit/master/docs/structure.md"><i class="fa fa-github"></i> Edit on GitHub</a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+                <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+        <li class="main active"><a href="#directory-structure">Directory structure</a></li>
+            <li><a href="#data-is-immutable">Data is immutable</a></li>
+            <li><a href="#notebooks-are-for-exploration-and-communication">Notebooks are for exploration and communication</a></li>
+            <li><a href="#analysis-is-a-dag">Analysis is a DAG</a></li>
+            <li><a href="#build-from-the-environment-up">Build from the environment up</a></li>
+            <li><a href="#keep-secrets-and-configuration-out-of-version-control">Keep secrets and configuration out of version control</a></li>
+    </ul>
+</div></div>
+                <div class="col-md-9" role="main">
+
+<h2 id="directory-structure">Directory structure</h2>
+<pre><code>├── LICENSE
+├── Dockerfile            &lt;- New project Dockerfile that sources from base ML dev image
+├── docker-compose.yml    &lt;- Docker Compose configuration file
+├── docker_clean_all.sh   &lt;- Helper script to remove all containers and images from your system
+├── start.sh              &lt;- Script to run docker compose and any other project specific initialization steps 
+├── Makefile              &lt;- Makefile with commands like `make data` or `make train`
+├── README.md             &lt;- The top-level README for developers using this project.
+├── data
+│   ├── external          &lt;- Data from third party sources.
+│   ├── interim           &lt;- Intermediate data that has been transformed.
+│   ├── processed         &lt;- The final, canonical data sets for modeling.
+│   └── raw               &lt;- The original, immutable data dump.
+│
+├── docs                  &lt;- A default Sphinx project; see sphinx-doc.org for details
+│
+├── models                &lt;- Trained and serialized models, model predictions, or model summaries
+│
+├── notebooks             &lt;- Jupyter notebooks. Naming convention is a number (for ordering),
+│                            the creator's initials, and a short `-` delimited description, e.g.
+│                            `1.0-jqp-initial-data-exploration`.
+│
+├── references            &lt;- Data dictionaries, manuals, and all other explanatory materials.
+│
+├── reports               &lt;- Generated analysis as HTML, PDF, LaTeX, etc.
+│   └── figures           &lt;- Generated graphics and figures to be used in reporting
+│
+├── requirements.txt      &lt;- The requirements file for reproducing the analysis environment, e.g.
+│                            generated with `pip freeze &gt; requirements.txt`
+│
+├── src                   &lt;- Source code for use in this project.
+│   ├── __init__.py       &lt;- Makes src a Python module
+│   │
+│   ├── data              &lt;- Scripts to download or generate data
+│   │   └── make_dataset.py
+│   │
+│   ├── features          &lt;- Scripts to turn raw data into features for modeling
+│   │   └── build_features.py
+│   │
+│   ├── models            &lt;- Scripts to train models and then use trained models to make
+│   │   │                    predictions
+│   │   ├── predict_model.py
+│   │   └── train_model.py
+│   │
+│   └── visualization  &lt;- Scripts to create exploratory and results oriented visualizations
+│       └── visualize.py
+│
+└── tox.ini            &lt;- tox file with settings for running tox; see tox.testrun.org
+</code></pre>
+
+<h3 id="data-is-immutable">Data is immutable</h3>
+<ul>
+<li>
+<p>Don't ever edit your raw data, especially not manually, and especially not in Excel. </p>
+</li>
+<li>
+<p>Don't overwrite your raw data. </p>
+</li>
+<li>
+<p>Don't save multiple versions of the raw data. </p>
+</li>
+<li>
+<p>Treat the data (and its format) as immutable. </p>
+</li>
+</ul>
+<p>The code you write should move the raw data through a pipeline to your final analysis. You shouldn't have to run all of the steps every time you want to make a new figure (see <a href="#analysis-is-a-dag">Analysis is a DAG</a>), but anyone should be able to reproduce the final products with only the code in <code>src</code> and the data in <code>data/raw</code>.</p>
+<p>Also, if data is immutable, it doesn't need source control in the same way that code does. Therefore, <strong><em>by default, the data folder is included in the <code>.gitignore</code> file.</em></strong> If you have a small amount of data that rarely changes, you may want to include the data in the repository. Github currently warns if files are over 50MB and rejects files over 100MB. Some other options for storing/syncing large data include <a href="https://aws.amazon.com/s3/">AWS S3</a> with a syncing tool (e.g., <a href="http://s3tools.org/s3cmd"><code>s3cmd</code></a>), <a href="https://git-lfs.github.com/">Git Large File Storage</a>, <a href="https://git-annex.branchable.com/">Git Annex</a>, and <a href="http://dat-data.com/">dat</a>. Currently by default, we ask for an S3 bucket and use <a href="http://docs.aws.amazon.com/cli/latest/reference/s3/index.html">AWS CLI</a> to sync data in the <code>data</code> folder with the server.</p>
+<h3 id="notebooks-are-for-exploration-and-communication">Notebooks are for exploration and communication</h3>
+<p>Notebook packages like the <a href="http://jupyter.org/">Jupyter notebook</a>, <a href="http://beakernotebook.com/">Beaker notebook</a>, <a href="http://zeppelin-project.org/">Zeppelin</a>, and other literate programming tools are very effective for exploratory data analysis. However, these tools can be less effective for reproducing an analysis. When we use notebooks in our work, we often subdivide the <code>notebooks</code> folder. For example, <code>notebooks/exploratory</code> contains initial explorations, whereas <code>notebooks/reports</code> is more polished work that can be exported as html to the <code>reports</code> directory.</p>
+<p>Since notebooks are challenging objects for source control (e.g., diffs of the <code>json</code> are often not human-readable and merging is near impossible), we recommended not collaborating directly with others on Jupyter notebooks. There are two steps we recommend for using notebooks effectively:</p>
+<ol>
+<li>
+<p><strong>Follow a naming convention</strong> that shows the owner and the order the analysis was done in. We use the format <code>&lt;step_number&gt;-&lt;your_initials&gt;-&lt;description&gt;.ipynb</code> (e.g., <code>1-PL-visualize-distributions.ipynb</code>).</p>
+</li>
+<li>
+<p><strong>Refactor the good parts!</strong> Don't write code to do the same task in multiple notebooks. If it's a data preprocessing task, put it in the pipeline at <code>src/data/make_dataset.py</code> and load data from <code>data/interim</code>. If it's useful utility code, refactor it to <code>src</code> and import it into notebooks with a cell like the following. If updating the system path is picky to you, we'd recommend making a Python package (there is a <a href="https://github.com/audreyr/cookiecutter-pypackage">cookiecutter for that</a> as well) and installing that as an editable package with <code>pip install -e</code>.</p>
+</li>
+</ol>
+<pre><code># Load the &quot;autoreload&quot; extension
+%load_ext autoreload
+
+# always reload modules marked with &quot;%aimport&quot;
+%autoreload 1
+
+import os
+import sys
+
+# add the 'src' directory as one where we can import modules
+src_dir = os.path.join(os.getcwd(), os.pardir, 'src')
+sys.path.append(src_dir)
+
+# import my method from the source code
+%aimport preprocess.build_features
+from preprocess.build_features import remove_invalid_data
+</code></pre>
+
+<h3 id="analysis-is-a-dag">Analysis is a DAG</h3>
+<p>Often in an analysis you have long-running steps that preprocess data or train models. If these steps have been run already (and you have stored the output somewhere like the <code>data/interim</code> directory), you don't want to wait to rerun them every time. We prefer <a href="https://www.gnu.org/software/make/"><code>make</code></a> for managing steps that depend on each other, especially the long-running ones. Make is a common tool on Unix-based platforms (and <a href="">is available for Windows</a>). Following the <a href="https://www.gnu.org/software/make/"><code>make</code> documentation</a>, <a href="https://www.gnu.org/prep/standards/html_node/Makefile-Conventions.html#Makefile-Conventions">Makefile conventions</a>, and <a href="http://www.gnu.org/savannah-checkouts/gnu/autoconf/manual/autoconf-2.69/html_node/Portable-Make.html#Portable-Make">portability guide</a> will help ensure your Makefiles work effectively across systems. Here are <a href="http://zmjones.com/make/">some</a> <a href="http://blog.kaggle.com/2012/10/15/make-for-data-scientists/">examples</a> to <a href="https://web.archive.org/web/20150206054212/http://www.bioinformaticszen.com/post/decomplected-workflows-makefiles/">get started</a>. A number of data folks use <code>make</code> as their tool of choice, including <a href="https://bost.ocks.org/mike/make/">Mike Bostock</a>.</p>
+<p>There are other tools for managing DAGs that are written in Python instead of a DSL (e.g., <a href="http://paver.github.io/paver/#">Paver</a>, <a href="http://luigi.readthedocs.org/en/stable/index.html">Luigi</a>, <a href="http://pythonhosted.org/airflow/cli.html">Airflow</a>, <a href="https://bitbucket.org/snakemake/snakemake/wiki/Home">Snakemake</a>, <a href="http://www.ruffus.org.uk/">Ruffus</a>, or <a href="https://pythonhosted.org/joblib/memory.html">Joblib</a>). Feel free to use these if they are more appropriate for your analysis.</p>
+<h3 id="build-from-the-environment-up">Build from the environment up</h3>
+<p>The first step in reproducing an analysis is always reproducing the computational environment it was run in. You need the same tools, the same libraries, and the same versions to make everything play nicely together.</p>
+<p>One effective approach to this is use <a href="https://virtualenv.pypa.io/en/latest/">virtualenv</a> (we recommend <a href="https://virtualenvwrapper.readthedocs.org/en/latest/">virtualenvwrapper</a> for managing virtualenvs). By listing all of your requirements in the repository (we include a <code>requirements.txt</code> file) you can easily track the packages needed to recreate the analysis. Here is a good workflow:</p>
+<blockquote>
+<ol>
+<li>Run <code>mkvirtualenv</code> when creating a new project</li>
+<li><code>pip install</code> the packages that your analysis needs</li>
+<li>Run <code>pip freeze &gt; requirements.txt</code> to pin the exact package versions used to recreate the analysis</li>
+<li>If you find you need to install another package, run <code>pip freeze &gt; requirements.txt</code> again and commit the changes to version control.</li>
+</ol>
+</blockquote>
+<p>If you have more complex requirements for recreating your environment, consider a virtual machine based approach such as <a href="https://www.docker.com/">Docker</a> or <a href="https://www.vagrantup.com/">Vagrant</a>. Both of these tools use text-based formats (Dockerfile and Vagrantfile respectively) you can easily add to source control to describe how to create a virtual machine with the requirements you need.</p>
+<h3 id="keep-secrets-and-configuration-out-of-version-control">Keep secrets and configuration out of version control</h3>
+<p>You <em>really</em> don't want to leak your AWS secret key or Postgres username and password on Github. Enough said — see the <a href="http://12factor.net/config">Twelve Factor App</a> principles on this point. Here's one way to do this:</p>
+<h4 id="store-your-secrets-and-config-variables-in-a-special-file">Store your secrets and config variables in a special file</h4>
+<p>Create a <code>.env</code> file in the project root folder. Thanks to the <code>.gitignore</code>, this file should never get committed into the version control repository. Here's an example:</p>
+<pre><code class="nohighlight"># example .env file
+DATABASE_URL=postgres://username:password@localhost:5432/dbname
+AWS_ACCESS_KEY=myaccesskey
+AWS_SECRET_ACCESS_KEY=mysecretkey
+OTHER_VARIABLE=something
+</code></pre>
+
+<h4 id="use-a-package-to-load-these-variables-automatically">Use a package to load these variables automatically.</h4>
+<p>If you look at the stub script in <code>src/data/make_dataset.py</code>, it uses a package called <a href="https://github.com/theskumar/python-dotenv">python-dotenv</a> to load up all the entries in this file as environment variables so they are accessible with <code>os.environ.get</code>. Here's an example snippet adapted from the <code>python-dotenv</code> documentation:</p>
+<pre><code class="python"># src/data/dotenv_example.py
+import os
+from dotenv import load_dotenv, find_dotenv
+
+# find .env automagically by walking up directories until it's found
+dotenv_path = find_dotenv()
+
+# load up the entries as environment variables
+load_dotenv(dotenv_path)
+
+database_url = os.environ.get(&quot;DATABASE_URL&quot;)
+other_variable = os.environ.get(&quot;OTHER_VARIABLE&quot;)
+</code></pre>
+
+<h4 id="aws-cli-configuration">AWS CLI configuration</h4>
+<p>When using Amazon S3 to store data, a simple method of managing AWS access is to set your access keys to environment variables. However, managing mutiple sets of keys on a single machine (e.g. when working on multiple projects) it is best to use a <a href="https://docs.aws.amazon.com/cli/latest/userguide/cli-config-files.html">credentials file</a>, typically located in <code>~/.aws/credentials</code>. A typical file might look like:</p>
+<pre><code>[default]
+aws_access_key_id=myaccesskey
+aws_secret_access_key=mysecretkey
+
+[another_project]
+aws_access_key_id=myprojectaccesskey
+aws_secret_access_key=myprojectsecretkey
+</code></pre>
+
+<p>You can add the profile name when initialising a project; assuming no applicable environment variables are set, the profile credentials will be used be default.</p></div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+                <p>Project maintained by Piotr Laczkowski</p>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script>
+            var base_url = "..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../js/base.js" defer></script>
+        <script src="../search/main.js" defer></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="exampleModalLabel">Search</h4>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form role="form">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="Keyboard Shortcuts Modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="exampleModalLabel">Keyboard Shortcuts</h4>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>
