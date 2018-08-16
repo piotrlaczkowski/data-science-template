@@ -1,5 +1,6 @@
 mkdocs
 mkdocs-cinder
+mkdocs-bootswatch
 click-man
 cookiecutter
 pytest

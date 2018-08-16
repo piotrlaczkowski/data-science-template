@@ -1,9 +1,9 @@
-site_name: Cookiecutter Template For BackMarket Data Science Projects
+site_name: BM Data Science
 site_description: A project template and directory structure for Python data science projects including docker.
 site_favicon: favicon.ico
 repo_url: https://github.com/BackMarket/templates-data-science.git
 copyright: Project maintained by Piotr Laczkowski
-theme: readthedocs
+theme: flatly
 extra_css:
   - css/extra.css
 pages:
