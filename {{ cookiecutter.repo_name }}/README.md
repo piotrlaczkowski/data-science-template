@@ -1,7 +1,13 @@
 {{cookiecutter.project_name}}
 ==============================
 
-{{cookiecutter.description}}
+**Description**: {{cookiecutter.description}}
+
+**Project Status**: {{cookiecutter.status}}
+
+**Version**: {{cookiecutter.version}}
+
+**Date**: {{cookiecutter.date}}
 
 Project Organization
 ------------
@@ -50,7 +56,7 @@ Project Organization
     │
     └── tox.ini            <- tox file with settings for running tox; see tox.testrun.org
 
-
 --------
 
-<p><small>Project based on the <a target="_blank" href="https://drivendata.github.io/cookiecutter-data-science/">cookiecutter data science project template</a>. #cookiecutterdatascience</small></p>
+<p><small>Project based on the <a target="_blank" href="https://github.com/BackMarket/templates-data-science/">Cookiecutter Data Science project template by Back Markekt Data Team</a>. #bmcookiecutterdatascience</small></p>
+
