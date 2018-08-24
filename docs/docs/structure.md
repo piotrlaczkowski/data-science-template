@@ -74,7 +74,7 @@ Since notebooks are challenging objects for source control (e.g., diffs of the `
 
  2. **Refactor the good parts!** Don't write code to do the same task in multiple notebooks. If it's a data preprocessing task, put it in the pipeline at `src/data/make_dataset.py` and load data from `data/interim`. If it's useful utility code, refactor it to `src` and import it into notebooks with a cell like the following. If updating the system path is picky to you, we'd recommend making a Python package (there is a [cookiecutter for that](https://github.com/audreyr/cookiecutter-pypackage) as well) and installing that as an editable package with `pip install -e`.
 
-```
+```python
 # Load the "autoreload" extension
 %load_ext autoreload
 
